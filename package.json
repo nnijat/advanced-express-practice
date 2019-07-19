@@ -9,9 +9,7 @@
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
-    "body-parser": "^1.17.1",
-    "dotenv": "^2.0.0",
-    "express": "^4.14.0",
-    "mongoose": "^4.6.8"
+    "body-parser": "*",
+    "express": "*"
   }
 }
