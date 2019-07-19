@@ -1,6 +1,4 @@
 # Express Practice
-
-# Windows users - Make sure you remove single quotes from the package.json
 # Setup
 * fork, clone, npm install, node index.js
 * A web page has been created for you
