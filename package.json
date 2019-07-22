@@ -1,7 +1,7 @@
 {
   "name": "advanced-server-practice",
   "version": "1.0.0",
-  "description": "",
+  "description": "* fork, clone, npm install, node index.js * A web page has been created for you * Your job is to build the server  * Ignore the `client` folder * Look at http://localhost:3001",
   "main": "index.js",
   "scripts": {},
   "keywords": [],
@@ -10,6 +10,15 @@
   "devDependencies": {},
   "dependencies": {
     "body-parser": "*",
-    "express": "*"
-  }
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nnijat/advanced-express-practice.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nnijat/advanced-express-practice/issues"
+  },
+  "homepage": "https://github.com/nnijat/advanced-express-practice#readme"
 }
