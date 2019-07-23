@@ -1,22 +1,13 @@
 `use strict`
 const express = require('express');
 const router = express.Router();
-let contacts = require('../dataFolder/contacts');
+const { list, show, create, update, remove } = require('../controllers/contacts')
 
-// contacts
-router.get('/contacts', (req, res) => {
-    res.json(contacts)
-})
-
-router.get("/contacts/:id", (req, res) => {
-    let contactsId = contacts.find(c => c._id == req.params.id);
-    res.json(contactsId);
-});
-
-router.post('/contacts', (req, res) => {
-    let contactBody = req.body;
-    contacts.push(contactBody);
-    res.json(contacts);
-});
+router.get('/contacts', list);
+router.get('/contacts/:id', show);
+router.post('/contacts', create);
+router.put('/contacts/:id', update)
+router.delete('/contacts/:id', remove)
 
 module.exports = router;
+

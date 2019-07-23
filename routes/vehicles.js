@@ -1,21 +1,12 @@
 `use strict`
 const express = require('express');
 const router = express.Router();
-let vehicles = require('../dataFolder/vehicles');
+const { list, show, create, update, remove } = require('../controllers/vehicles')
 
-router.get('/vehicles', (req, res) => {
-    res.json(vehicles)
-})
-
-router.get("/vehicles/:id", (req, res) => {
-    let vehiclesId = vehicles.find(v => v._id == req.params.id);
-    res.json(vehiclesId);
-});
-
-router.post('/vehicles', (req, res) => {
-    let vehicleBody = req.body;
-    vehicles.push(vehicleBody);
-    res.json(vehicles);
-});
+router.get('/vehicles', list);
+router.get('/vehicles/:id', show);
+router.post('/vehicles', create);
+router.put('/vehicles/:id', update)
+router.delete('/vehicles/:id', remove)
 
 module.exports = router;
