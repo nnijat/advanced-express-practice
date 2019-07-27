@@ -1,6 +1,7 @@
 let express = require('express');
 const app = express();
 let bodyParser = require('body-parser');
+const { connect } = require("./dbConfig");
 
 app.use(bodyParser.json());
 app.use(express.static("public"));
@@ -13,6 +14,10 @@ let contactsRoutes = require('./routes/contacts');
 let productsRoutes = require('./routes/products');
 let vehiclesRoutes = require('./routes/vehicles');
 
+// Database connection
+connect();
+
+// Call Routes
 app.use(commentsRoutes);
 app.use(contactsRoutes);
 app.use(productsRoutes);
