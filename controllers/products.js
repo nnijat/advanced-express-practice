@@ -1,22 +1,31 @@
 `use strict`
-
-let products = require('../dataFolder/products');
+let ProductModel = require("../models/products");
 
 exports.list = function list(request, response) {
-    let enableProducts = products.filter(p => p.isActive != false);
-    response.json(enableProducts);
+    ProductModel.find((e, v) => {
+        if (e) return console.log(e)
+        return response.json(v);
+    });
 }
 
 exports.show = function show(request, response) {
-    let product = products.find(p => p._id == request.params.id);
-    response.json(product);
+    ProductModel.findById(request.params.id, (e, v) => {
+        if (e) return console.log(e)
+        return response.json(v);
+    });
 }
 
 exports.create = function create(request, response) {
-    let productBody = request.body;
-    products.push(productBody);
-    response.json(products);
+    let newProduct = new ProductModel(request.body);
+    newProduct.save(() => {
+        return response.json(newProduct);
+    });
 }
+
+/*
+*TODO:
+* Update update and remove fucntion with mongoose
+*/
 
 exports.update = function update(request, response) {
     let product = products.find(p => p._id == request.params.id);

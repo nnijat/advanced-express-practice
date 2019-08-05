@@ -1,22 +1,31 @@
 `use strict`
-
-let comments = require('../dataFolder/comments');
+let CommentModel = require("../models/comments");
 
 exports.list = function list(request, response) {
-    let enableComments = comments.filter(c => c.isActive != false);
-    response.json(enableComments);
+    CommentModel.find((e, v) => {
+        if (e) return console.log(e)
+        return response.json(v);
+    });
 }
 
 exports.show = function show(request, response) {
-    let comment = comments.find(c => c._id == request.params.id);
-    response.json(comment);
+    CommentModel.findById(request.params.id, (e, v) => {
+        if (e) return console.log(e)
+        return response.json(v);
+    });
 }
 
 exports.create = function create(request, response) {
-    let commentBody = request.body;
-    comments.push(commentBody);
-    response.json(comments);
+    let newComment = new CommentModel(request.body);
+    newComment.save(() => {
+        return response.json(newComment);
+    });
 }
+
+/*
+*TODO:
+* Update update and remove fucntion with mongoose
+*/
 
 exports.update = function update(request, response) {
     let comment = comments.find(c => c._id == request.params.id);

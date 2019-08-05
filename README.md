@@ -1,3 +1,5 @@
+### My DB connection String = mongodb+srv://nn-database:*<password>*@nn-aca-db-g06t0.mongodb.net/test?retryWrites=true&w=majority
+
 # Express Practice
 # Setup
 * fork, clone, npm install, node index.js
