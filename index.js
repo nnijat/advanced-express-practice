@@ -1,9 +1,21 @@
+
+`use strict`
+require('dotenv').config();
 let express = require('express');
 const app = express();
 let bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(express.static("public"));
+
+const DB_CONNECTION_STRING = process.env.CONNECTION_STRING
+
+const mongoose = require('mongoose');
+mongoose.connect(DB_CONNECTION_STRING, { useNewUrlParser: true }, (err) => {
+  console.log(err)
+  console.log("Connected successfully to server");
+});
+
 
 const thePort = 3001;
 

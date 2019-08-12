@@ -1,22 +1,31 @@
 `use strict`
-
-let contacts = require('../dataFolder/contacts');
+let ContactModel = require("../models/contacts");
 
 exports.list = function list(request, response) {
-    let enableContacts = contacts.filter(c => c.isActive != false)
-    response.json(enableContacts);
+    ContactModel.find((e, v) => {
+        if (e) return console.log(e)
+        return response.json(v);
+    });
 }
 
 exports.show = function show(request, response) {
-    let contact = contacts.find(c => c._id == request.params.id);
-    response.json(contact);
+    ContactModel.findById(request.params.id, (e, v) => {
+        if (e) return console.log(e)
+        return response.json(v);
+    });
 }
 
 exports.create = function create(request, response) {
-    let contactBody = request.body;
-    contacts.push(contactBody);
-    response.json(contacts);
+    let newProduct = new ContactModel(request.body);
+    newProduct.save(() => {
+        return response.json(newProduct);
+    });
 }
+
+/*
+*TODO:
+* Update update and remove fucntion with mongoose
+*/
 
 exports.update = function update(request, response) {
     let contact = contacts.find(c => c._id == request.params.id);
